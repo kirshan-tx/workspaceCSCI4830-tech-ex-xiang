@@ -85,6 +85,34 @@ public class UtilDBXiang {
       }
       return resultList;
    }
+   
+   public static List<MyTableXiangTechEx> listExpensesByCategory(String category) {
+	      List<MyTableXiangTechEx> resultList = new ArrayList<MyTableXiangTechEx>();
+
+	      Session session = getSessionFactory().openSession();
+	      Transaction tx = null;
+
+	      try {
+	         tx = session.beginTransaction();
+	         System.out.println((MyTableXiangTechEx)session.get(MyTableXiangTechEx.class, 1)); // use "get" to fetch data
+	         List<?> expenses = session.createQuery("FROM MyTableXiangTechEx").list();
+	         for (Iterator<?> iterator = expenses.iterator(); iterator.hasNext();) {
+	            MyTableXiangTechEx expense = (MyTableXiangTechEx) iterator.next();
+	            if (expense.getCategory().startsWith(category)) {
+	               resultList.add(expense);
+	            }
+	         }
+	         tx.commit();
+	      } catch (HibernateException e) {
+	         if (tx != null)
+	            tx.rollback();
+	         e.printStackTrace();
+	      } finally {
+	         session.close();
+	      }
+	      return resultList;
+	   }
+
 
    public static void createExpense(String expense, int amount, String date, String category) {
       Session session = getSessionFactory().openSession();
