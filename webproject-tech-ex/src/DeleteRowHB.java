@@ -12,7 +12,7 @@ import datamodel.MyTableXiangTechEx;
 import util.Info;
 import util.UtilDBXiang;
 
-@WebServlet("/CategoricalSearchHB")
+@WebServlet("/DeleteRowHB")
 public class DeleteRowHB extends HttpServlet implements Info {
     private static final long serialVersionUID = 1L;
 
@@ -53,32 +53,9 @@ public class DeleteRowHB extends HttpServlet implements Info {
         }
 
         out.println("</ul>");
-        out.println("<a href=/" + projectName + "/" + categoricalWebName + ">Back to Categorical Search</a> <br>");
+        out.println("<a href=/" + projectName + "/" + deleteWebName + ">Back to Delete Row </a> <br>");
         out.println("</body></html>");
     }
-
-    void display(List<MyTableXiangTechEx> listExpenses, PrintWriter out) {
-        if (listExpenses.isEmpty()) {
-            out.println("<h1>None</h1>");
-        } else {
-        	int totalAmount = 0;
-        	
-        	out.println("<table class='expense-table'>");
-            out.println("<tr><th>Expense</th><th>Amount</th><th>Date</th><th>Category</th></tr>");
-            for (MyTableXiangTechEx expense : listExpenses) {
-                out.println("<tr><td>" + expense.getExpense() + "</td><td>" //
-                        + expense.getAmount() + "</td><td>" //
-                        + expense.getDate() + "</td><td>" //
-                        + expense.getCategory() + "</td></tr>");
-                
-                totalAmount += expense.getAmount();
-            }
-            out.println("</table>");
-            
-            out.println("<h4>Total Amount: $" + totalAmount + "</h4>");
-        }
-    }
-
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
