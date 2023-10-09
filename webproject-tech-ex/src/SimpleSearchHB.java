@@ -47,19 +47,28 @@ public class SimpleSearchHB extends HttpServlet implements Info {
    }
 
    void display(List<MyTableXiangTechEx> listExpenses, PrintWriter out) {
+	  out.println("<table class='expense-table'>");
+      out.println("<tr><th>Expense</th><th>Amount</th><th>Date</th><th>Category</th></tr>");
+      
+      int totalAmount = 0;
+      
       for (MyTableXiangTechEx expense : listExpenses) {
     	  System.out.println("[DBG] " + expense.getId() + ", " //
                   + expense.getExpense() + ", " //
                   + expense.getAmount() + ", " //
                   + expense.getDate() + ", " //
                   + expense.getCategory());
-
-         out.println("<li>" + expense.getId() + ", " //
-               + expense.getExpense() + ", " //
-               + expense.getAmount() + ", " //
-               + expense.getDate() + ", " //
-               + expense.getCategory() + "</li>");
+         
+         out.println("<tr><td>" + expense.getExpense() + "</td><td>" //
+                 + expense.getAmount() + "</td><td>" //
+                 + expense.getDate() + "</td><td>" //
+                 + expense.getCategory() + "</td></tr>");
+         
+         totalAmount += expense.getAmount();
       }
+      out.println("</table>");
+      
+      out.println("<h4>Total Amount: $" + totalAmount + "</h4>");
    }
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -51,13 +51,21 @@ public class CategoricalSearchHB extends HttpServlet implements Info {
         if (listExpenses.isEmpty()) {
             out.println("<h1>None</h1>");
         } else {
+        	int totalAmount = 0;
+        	
+        	out.println("<table class='expense-table'>");
+            out.println("<tr><th>Expense</th><th>Amount</th><th>Date</th><th>Category</th></tr>");
             for (MyTableXiangTechEx expense : listExpenses) {
-                out.println("<li>" + expense.getId() + ", " //
-                    + expense.getExpense() + ", " //
-                    + expense.getAmount() + ", " //
-                    + expense.getDate() + ", " //
-                    + expense.getCategory() + "</li>");
+                out.println("<tr><td>" + expense.getExpense() + "</td><td>" //
+                        + expense.getAmount() + "</td><td>" //
+                        + expense.getDate() + "</td><td>" //
+                        + expense.getCategory() + "</td></tr>");
+                
+                totalAmount += expense.getAmount();
             }
+            out.println("</table>");
+            
+            out.println("<h4>Total Amount: $" + totalAmount + "</h4>");
         }
     }
 
