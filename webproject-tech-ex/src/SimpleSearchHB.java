@@ -48,7 +48,7 @@ public class SimpleSearchHB extends HttpServlet implements Info {
 
    void display(List<MyTableXiangTechEx> listExpenses, PrintWriter out) {
 	  out.println("<table class='expense-table'>");
-      out.println("<tr><th>Expense</th><th>Amount</th><th>Date</th><th>Category</th></tr>");
+      out.println("<tr><th>ID	</th><th>Expense</th><th>Amount</th><th>Date</th><th>Category</th></tr>");
       
       int totalAmount = 0;
       
@@ -59,7 +59,8 @@ public class SimpleSearchHB extends HttpServlet implements Info {
                   + expense.getDate() + ", " //
                   + expense.getCategory());
          
-         out.println("<tr><td>" + expense.getExpense() + "</td><td>" //
+         out.println("<tr><td>" + expense.getId() + "</td><td>" //
+        		 + expense.getExpense() + "</td><td>" //
                  + expense.getAmount() + "</td><td>" //
                  + expense.getDate() + "</td><td>" //
                  + expense.getCategory() + "</td></tr>");
