@@ -129,4 +129,31 @@ public class UtilDBXiang {
          session.close();
       }
    }
+   
+   public static boolean deleteRow(int id) {
+       Session session = getSessionFactory().openSession();
+       Transaction tx = null;
+       try {
+           tx = session.beginTransaction();
+           Object object = session.get(MyTableXiangTechEx.class, id);
+           
+           if (object != null && object instanceof MyTableXiangTechEx) {
+               MyTableXiangTechEx row = (MyTableXiangTechEx) object;
+               session.delete(row);
+               tx.commit();
+               return true;
+           }
+           
+           return false;
+           
+       } catch (HibernateException e) {
+           if (tx != null)
+               tx.rollback();
+           e.printStackTrace();
+           return false;
+       } finally {
+           session.close();
+       }
+   }
 }
+
