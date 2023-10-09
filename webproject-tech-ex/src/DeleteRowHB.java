@@ -53,7 +53,7 @@ public class DeleteRowHB extends HttpServlet implements Info {
         }
 
         out.println("</ul>");
-        out.println("<a href=/" + projectName + "/" + deleteWebName + ">Back to Delete Row </a> <br>");
+        out.println("<a href=/" + projectName + "/" + insertWebName + "> Insert New Expense </a> <br>");
         out.println("</body></html>");
     }
 
