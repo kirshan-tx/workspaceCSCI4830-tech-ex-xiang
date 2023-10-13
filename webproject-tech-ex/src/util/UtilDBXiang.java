@@ -12,7 +12,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-import datamodel.MyTableXiangTechEx;
+import datamodel.ExpenseXiang;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -35,17 +35,17 @@ public class UtilDBXiang {
       return sessionFactory;
    }
 
-   public static List<MyTableXiangTechEx> listExpenses() {
-      List<MyTableXiangTechEx> resultList = new ArrayList<MyTableXiangTechEx>();
+   public static List<ExpenseXiang> listExpenses() {
+      List<ExpenseXiang> resultList = new ArrayList<ExpenseXiang>();
 
       Session session = getSessionFactory().openSession();
       Transaction tx = null;  // each process needs transaction and commit the changes in DB.
 
       try {
          tx = session.beginTransaction();
-         List<?> expenses = session.createQuery("FROM MyTableXiangTechEx").list();
+         List<?> expenses = session.createQuery("FROM ExpenseXiang").list();
          for (Iterator<?> iterator = expenses.iterator(); iterator.hasNext();) {
-            MyTableXiangTechEx expense = (MyTableXiangTechEx) iterator.next();
+            ExpenseXiang expense = (ExpenseXiang) iterator.next();
             resultList.add(expense);
          }
          tx.commit();
@@ -59,18 +59,18 @@ public class UtilDBXiang {
       return resultList;
    }
 
-   public static List<MyTableXiangTechEx> listExpenses(String keyword) {
-      List<MyTableXiangTechEx> resultList = new ArrayList<MyTableXiangTechEx>();
+   public static List<ExpenseXiang> listExpenses(String keyword) {
+      List<ExpenseXiang> resultList = new ArrayList<ExpenseXiang>();
 
       Session session = getSessionFactory().openSession();
       Transaction tx = null;
 
       try {
          tx = session.beginTransaction();
-         System.out.println((MyTableXiangTechEx)session.get(MyTableXiangTechEx.class, 1)); // use "get" to fetch data
-         List<?> expenses = session.createQuery("FROM MyTableXiangTechEx").list();
+         System.out.println((ExpenseXiang)session.get(ExpenseXiang.class, 1)); // use "get" to fetch data
+         List<?> expenses = session.createQuery("FROM ExpenseXiang").list();
          for (Iterator<?> iterator = expenses.iterator(); iterator.hasNext();) {
-            MyTableXiangTechEx expense = (MyTableXiangTechEx) iterator.next();
+            ExpenseXiang expense = (ExpenseXiang) iterator.next();
             if (expense.getExpense().startsWith(keyword)) {
                resultList.add(expense);
             }
@@ -86,18 +86,18 @@ public class UtilDBXiang {
       return resultList;
    }
    
-   public static List<MyTableXiangTechEx> listExpensesByCategory(String category) {
-	      List<MyTableXiangTechEx> resultList = new ArrayList<MyTableXiangTechEx>();
+   public static List<ExpenseXiang> listExpensesByCategory(String category) {
+	      List<ExpenseXiang> resultList = new ArrayList<ExpenseXiang>();
 
 	      Session session = getSessionFactory().openSession();
 	      Transaction tx = null;
 
 	      try {
 	         tx = session.beginTransaction();
-	         System.out.println((MyTableXiangTechEx)session.get(MyTableXiangTechEx.class, 1)); // use "get" to fetch data
-	         List<?> expenses = session.createQuery("FROM MyTableXiangTechEx").list();
+	         System.out.println((ExpenseXiang)session.get(ExpenseXiang.class, 1)); // use "get" to fetch data
+	         List<?> expenses = session.createQuery("FROM ExpenseXiang").list();
 	         for (Iterator<?> iterator = expenses.iterator(); iterator.hasNext();) {
-	            MyTableXiangTechEx expense = (MyTableXiangTechEx) iterator.next();
+	            ExpenseXiang expense = (ExpenseXiang) iterator.next();
 	            if (expense.getCategory().startsWith(category)) {
 	               resultList.add(expense);
 	            }
@@ -119,7 +119,7 @@ public class UtilDBXiang {
       Transaction tx = null;
       try {
          tx = session.beginTransaction();
-         session.save(new MyTableXiangTechEx(expense, Integer.valueOf(amount), date, category));
+         session.save(new ExpenseXiang(expense, Integer.valueOf(amount), date, category));
          tx.commit();
       } catch (HibernateException e) {
          if (tx != null)
@@ -135,10 +135,10 @@ public class UtilDBXiang {
        Transaction tx = null;
        try {
            tx = session.beginTransaction();
-           Object object = session.get(MyTableXiangTechEx.class, id);
+           Object object = session.get(ExpenseXiang.class, id);
            
-           if (object != null && object instanceof MyTableXiangTechEx) {
-               MyTableXiangTechEx row = (MyTableXiangTechEx) object;
+           if (object != null && object instanceof ExpenseXiang) {
+               ExpenseXiang row = (ExpenseXiang) object;
                session.delete(row);
                tx.commit();
                return true;

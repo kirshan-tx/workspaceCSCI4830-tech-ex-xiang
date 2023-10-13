@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datamodel.MyTableXiangTechEx;
+import datamodel.ExpenseXiang;
 import util.Info;
 import util.UtilDBXiang;
 

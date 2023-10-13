@@ -14,6 +14,6 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- True you will see sql in console -->
 		<property name="show_sql">false</property>
-		<mapping class="datamodel.MyTableXiangTechEx" />
+		<mapping class="datamodel.ExpenseXiang" />
 	</session-factory>
 </hibernate-configuration>

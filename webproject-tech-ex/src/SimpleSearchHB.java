@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datamodel.MyTableXiangTechEx;
+import datamodel.ExpenseXiang;
 import util.Info;
 import util.UtilDBXiang;
 
@@ -34,7 +34,7 @@ public class SimpleSearchHB extends HttpServlet implements Info {
             "<h1 align=\"center\">" + title + "</h1>\n");
       out.println("<ul>");
 
-      List<MyTableXiangTechEx> listExpenses = null;
+      List<ExpenseXiang> listExpenses = null;
       if (keyword != null && !keyword.isEmpty()) {
     	  listExpenses = UtilDBXiang.listExpenses(keyword);
       } else {
@@ -46,13 +46,13 @@ public class SimpleSearchHB extends HttpServlet implements Info {
       out.println("</body></html>");
    }
 
-   void display(List<MyTableXiangTechEx> listExpenses, PrintWriter out) {
+   void display(List<ExpenseXiang> listExpenses, PrintWriter out) {
 	  out.println("<table class='expense-table'>");
       out.println("<tr><th>ID	</th><th>Expense</th><th>Amount</th><th>Date</th><th>Category</th></tr>");
       
       int totalAmount = 0;
       
-      for (MyTableXiangTechEx expense : listExpenses) {
+      for (ExpenseXiang expense : listExpenses) {
     	  System.out.println("[DBG] " + expense.getId() + ", " //
                   + expense.getExpense() + ", " //
                   + expense.getAmount() + ", " //

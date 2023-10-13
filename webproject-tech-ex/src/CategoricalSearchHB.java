@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datamodel.MyTableXiangTechEx;
+import datamodel.ExpenseXiang;
 import util.Info;
 import util.UtilDBXiang;
 
@@ -36,7 +36,7 @@ public class CategoricalSearchHB extends HttpServlet implements Info {
         out.println("<ul>");
 
         if (category != null && !category.isEmpty()) {
-            List<MyTableXiangTechEx> listExpenses = UtilDBXiang.listExpensesByCategory(category);
+            List<ExpenseXiang> listExpenses = UtilDBXiang.listExpensesByCategory(category);
             display(listExpenses, out);
         } else {
             out.println("Please select a category.");
@@ -47,7 +47,7 @@ public class CategoricalSearchHB extends HttpServlet implements Info {
         out.println("</body></html>");
     }
 
-    void display(List<MyTableXiangTechEx> listExpenses, PrintWriter out) {
+    void display(List<ExpenseXiang> listExpenses, PrintWriter out) {
         if (listExpenses.isEmpty()) {
             out.println("<h1>None</h1>");
         } else {
@@ -55,7 +55,7 @@ public class CategoricalSearchHB extends HttpServlet implements Info {
         	
         	out.println("<table class='expense-table'>");
             out.println("<tr><th>Expense</th><th>Amount</th><th>Date</th><th>Category</th></tr>");
-            for (MyTableXiangTechEx expense : listExpenses) {
+            for (ExpenseXiang expense : listExpenses) {
                 out.println("<tr><td>" + expense.getExpense() + "</td><td>" //
                         + expense.getAmount() + "</td><td>" //
                         + expense.getDate() + "</td><td>" //

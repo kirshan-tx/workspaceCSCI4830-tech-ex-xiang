@@ -17,7 +17,7 @@ PRIMARY KEY (ID));
  */
 @Entity
 @Table(name = "MyTableXiangTechEx")
-public class MyTableXiangTechEx {
+public class ExpenseXiang {
 
    @Id  // primary key
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,10 +36,10 @@ public class MyTableXiangTechEx {
    @Column(name = "category")
    private String category;
    
-   public MyTableXiangTechEx() {
+   public ExpenseXiang() {
    }
 
-   public MyTableXiangTechEx(Integer id, String expense, int amount, String date, String category) {
+   public ExpenseXiang(Integer id, String expense, int amount, String date, String category) {
       this.id = id;
       this.expense = expense;
       this.amount = amount;
@@ -47,7 +47,7 @@ public class MyTableXiangTechEx {
       this.category = category;
    }
 
-   public MyTableXiangTechEx(String expense, int amount, String date, String category) {
+   public ExpenseXiang(String expense, int amount, String date, String category) {
       this.expense = expense;
       this.amount = amount;
       this.date = date;
